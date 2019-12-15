@@ -1,24 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
+import axios from 'axios';
 
 function App() {
+
+  const problemSetURL = "http://codeforces.com/api/problemset.problems"
+
+  const [randomProblem, setRandomProblem] = useState({});
+
+  let problemData = null;
+  useEffect(() => {
+    axios.get(problemSetURL)
+    .then(res => {
+      console.log(res.data.status)
+      problemData = res.data.result.problems
+      setRandomProblem(problemData[Math.round(Math.random() * Object.keys(problemData).length)]);
+    })
+  },[]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{randomProblem.contestId}</h1>
+      <h1>{randomProblem.name}</h1>
+      <a target="_blank" rel="noopener noreferrer" href={"http://codeforces.com/problemset/problem/"+randomProblem.contestId+"/"+randomProblem.index}>Click Here to go to the page!</a>
     </div>
   );
 }
