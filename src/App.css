@@ -7,5 +7,33 @@
 {
   display: block;
   text-align: center;
-  border: 5px solid red;
+  width: fit-content;
+  margin:0 auto;
+  background-color: blanchedalmond;
+  opacity: 0.75;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.main
+{
+  display: block;
+  background-image: "%PUBLIC_URL%/bg.png";
+}
+
+.right
+{
+  position: fixed;
+  right: 0px;
+  top: 0px;
+}
+
+.topBar
+{
+  top: 0px;
+  width: inherit;
+  height: 40px;
+  background-color: transparent;
+  color: wheat;
+  text-align: center;
 }
